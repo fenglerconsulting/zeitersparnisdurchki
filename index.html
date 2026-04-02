@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zeitsparnis — Meta Ads Automatisierung</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --bg-secondary: #f5f5f3;
+      --text-primary: #1a1a18;
+      --text-secondary: #6b6b67;
+      --text-tertiary: #9f9f9b;
+      --border: rgba(0,0,0,0.1);
+      --border-medium: rgba(0,0,0,0.18);
+      --blue: #3266ad;
+      --teal: #1D9E75;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --font-mono: 'Courier New', Courier, monospace;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1a1a18;
+        --bg-secondary: #242422;
+        --text-primary: #f0f0ec;
+        --text-secondary: #9f9f9b;
+        --text-tertiary: #6b6b67;
+        --border: rgba(255,255,255,0.1);
+        --border-medium: rgba(255,255,255,0.18);
+      }
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 48px 24px 64px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 640px;
+    }
+
+    header {
+      margin-bottom: 36px;
+    }
+
+    header p.eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 8px;
+    }
+
+    header h1 {
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    header p.sub {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-top: 6px;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+
+    .met {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+
+    .met-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 3px;
+    }
+
+    .met-val {
+      font-size: 26px;
+      font-weight: 500;
+      font-family: var(--font-mono);
+      color: var(--text-primary);
+      line-height: 1.1;
+    }
+
+    .met-sub {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      margin-top: 2px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 16px;
+    }
+
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .slider-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+      min-width: 200px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      height: 4px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: var(--border-medium);
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--text-primary);
+      cursor: pointer;
+      border: none;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--text-primary);
+      cursor: pointer;
+      border: none;
+    }
+
+    .slider-val {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: var(--font-mono);
+      color: var(--text-primary);
+      min-width: 32px;
+      text-align: right;
+    }
+
+    .desc-block {
+      margin: 8px 0 24px 0;
+      padding: 10px 14px;
+      border-left: 2px solid var(--border-medium);
+    }
+
+    .desc-item {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.9;
+    }
+
+    .desc-item strong {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .desc-item.muted {
+      color: var(--text-tertiary);
+      margin-top: 2px;
+    }
+
+    .fixed-badge {
+      display: inline-block;
+      font-size: 11px;
+      color: var(--text-secondary);
+      background: var(--bg-secondary);
+      border: 0.5px solid var(--border-medium);
+      border-radius: 20px;
+      padding: 2px 10px;
+      margin-left: 8px;
+    }
+
+    footer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 0.5px solid var(--border);
+      font-size: 12px;
+      color: var(--text-tertiary);
+    }
+
+    @media (max-width: 480px) {
+      .metrics-grid { grid-template-columns: 1fr 1fr; }
+      .metrics-grid .met:last-child { grid-column: 1 / -1; }
+      .slider-label { min-width: 0; }
+      body { padding: 32px 16px 48px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <p class="eyebrow">Claude Code · Meta Ads</p>
+      <h1>Wie viel Zeit sparen wir?</h1>
+      <p class="sub">Stell die Kundenzahl ein — die Berechnung läuft automatisch.</p>
+    </header>
+
+    <div class="metrics-grid">
+      <div class="met">
+        <p class="met-label">Pro Woche</p>
+        <p class="met-val" id="m-week">0</p>
+        <p class="met-sub">Minuten</p>
+      </div>
+      <div class="met">
+        <p class="met-label">Pro Monat</p>
+        <p class="met-val" id="m-month">0.0</p>
+        <p class="met-sub">Stunden</p>
+      </div>
+      <div class="met">
+        <p class="met-label">Pro Jahr</p>
+        <p class="met-val" id="m-year">0.0</p>
+        <p class="met-sub">Arbeitstage</p>
+      </div>
+    </div>
+
+    <p class="section-title">Konfiguration</p>
+
+    <div class="slider-row">
+      <span class="slider-label">
+        <span class="dot" style="background:#3266ad;"></span>
+        Quick Actions — Kunden
+      </span>
+      <input type="range" min="0" max="200" value="7" id="s1" step="1" oninput="update()">
+      <span class="slider-val" id="v1">7</span>
+    </div>
+
+    <div class="desc-block">
+      <div class="desc-item"><strong>Budget anpassen</strong> — Tagesbudget einer Kampagne erhöhen oder reduzieren</div>
+      <div class="desc-item"><strong>Kampagne stoppen</strong> — laufende Kampagne sofort deaktivieren</div>
+      <div class="desc-item"><strong>Kampagne aktivieren</strong> — pausierte Kampagne wieder einschalten</div>
+      <div class="desc-item"><strong>Performance-Report</strong> — Leads, CPL, CTR, CPC der letzten 30 Tage abrufen</div>
+      <div class="desc-item muted">und so weiter</div>
+    </div>
+
+    <div class="slider-row">
+      <span class="slider-label">
+        <span class="dot" style="background:#1D9E75;"></span>
+        Ad-Optimierung — Kunden
+      </span>
+      <input type="range" min="0" max="200" value="7" id="s2" step="1" oninput="update()">
+      <span class="slider-val" id="v2">7</span>
+    </div>
+
+    <div class="desc-block">
+      <div class="desc-item"><strong>Turnus</strong><span class="fixed-badge">1× alle 14 Tage</span></div>
+    </div>
+
+    <footer>
+      Berechnung: Quick Actions 5 min/Kunde · Ad-Optimierung 8 min/Kunde · 22 Arbeitstage/Monat · 260 Arbeitstage/Jahr
+    </footer>
+
+  </div>
+
+  <script>
+    function update() {
+      const c1 = parseInt(document.getElementById('s1').value);
+      const c2 = parseInt(document.getElementById('s2').value);
+      document.getElementById('v1').textContent = c1;
+      document.getElementById('v2').textContent = c2;
+
+      const qaPerDay   = c1 * 5;
+      const qaPerWeek  = qaPerDay * 5;
+      const qaPerMonth = qaPerDay * 22;
+      const qaPerYear  = qaPerDay * 260;
+
+      const optPerMonth = c2 * 8 * 2;
+      const optPerYear  = optPerMonth * 12;
+
+      const totalWeek  = Math.round(qaPerWeek + optPerMonth / 4.3);
+      const totalMonth = (qaPerMonth + optPerMonth) / 60;
+      const totalYear  = (qaPerYear + optPerYear) / 60 / 8;
+
+      document.getElementById('m-week').textContent  = totalWeek;
+      document.getElementById('m-month').textContent = totalMonth.toFixed(1);
+      document.getElementById('m-year').textContent  = totalYear.toFixed(1);
+    }
+
+    update();
+  </script>
+</body>
+</html>
