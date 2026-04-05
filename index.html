@@ -8,110 +8,118 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --green: #61BD4F; --orange: #FF9F1A; --red: #EB5A46;
+            --green: #61BD4F; --orange: #FF9F1A; --red: #EB5A46; --purple: #C377E0;
             --bg: #0F172A; --bg-card: #1E293B; --text: #E2E8F0;
             --text-muted: #94A3B8; --accent: #38BDF8;
             --accent-glow: rgba(56,189,248,0.15); --border: #334155;
         }
         body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
 
-        /* Hero */
-        .hero { padding: 100px 20px 80px; text-align: center; position: relative; overflow: hidden; }
+        .hero { padding: 100px 20px 40px; text-align: center; position: relative; overflow: hidden; }
         .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse at 50% 0%, rgba(56,189,248,0.08) 0%, transparent 60%); pointer-events: none; }
         .hero-badge { display: inline-block; padding: 6px 16px; background: var(--accent-glow); border: 1px solid rgba(56,189,248,0.3); border-radius: 100px; font-size: 13px; font-weight: 500; color: var(--accent); letter-spacing: 0.5px; margin-bottom: 32px; }
+        .hero h1 { font-size: clamp(28px, 5vw, 48px); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 16px; background: linear-gradient(135deg, #fff 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero p { font-size: 18px; color: var(--text-muted); max-width: 640px; margin: 0 auto; }
 
-        /* Giant number */
-        .big-number-wrap { margin-bottom: 12px; }
-        .big-number { font-size: clamp(80px, 15vw, 160px); font-weight: 900; letter-spacing: -6px; line-height: 1; background: linear-gradient(135deg, #fff 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; }
-        .big-unit { font-size: clamp(24px, 4vw, 40px); font-weight: 300; color: var(--text-muted); letter-spacing: -1px; display: block; margin-top: 4px; }
-        .big-context { font-size: 16px; color: var(--text-muted); margin-top: 24px; max-width: 500px; margin-left: auto; margin-right: auto; }
-        .big-context strong { color: #fff; font-weight: 600; }
-
-        /* Slider */
-        .slider-section { margin-top: 56px; }
-        .slider-label { font-size: 13px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; }
-        .slider-wrap { display: flex; align-items: center; justify-content: center; gap: 24px; max-width: 500px; margin: 0 auto; }
-        .slider-wrap input[type="range"] { flex: 1; height: 8px; -webkit-appearance: none; appearance: none; background: var(--border); border-radius: 4px; outline: none; cursor: pointer; }
-        .slider-wrap input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 4px solid var(--bg); box-shadow: 0 0 20px rgba(56,189,248,0.5); }
-        .slider-wrap input[type="range"]::-moz-range-thumb { width: 28px; height: 28px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 4px solid var(--bg); box-shadow: 0 0 20px rgba(56,189,248,0.5); }
-        .slider-num { font-size: 48px; font-weight: 800; color: #fff; min-width: 70px; text-align: center; }
-        .slider-num-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
-
-        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
         section { padding: 80px 0; }
         .section-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 12px; }
-        .section-title { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 48px; }
+        .section-title { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 16px; }
+        .section-sub { font-size: 15px; color: var(--text-muted); margin-bottom: 48px; max-width: 600px; }
         .divider { height: 1px; background: var(--border); margin: 0; }
 
-        /* Three time cards */
-        .time-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 48px; }
-        .time-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; text-align: center; transition: border-color 0.3s; }
-        .time-card:hover { border-color: rgba(56,189,248,0.3); }
-        .time-card .tc-val { font-size: 36px; font-weight: 800; color: var(--accent); line-height: 1; }
-        .time-card .tc-unit { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
-        .time-card .tc-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 12px; }
+        /* ── Scale towers ── */
+        .scale-section { padding: 80px 0 60px; }
+        .towers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: end; min-height: 420px; }
+        .tower { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+        .tower-bar-wrap { width: 100%; position: relative; margin-bottom: 20px; }
+        .tower-bar { width: 100%; border-radius: 14px 14px 8px 8px; position: relative; overflow: hidden; transition: height 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .tower-bar::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 60%); pointer-events: none; }
+        .t1 .tower-bar { background: linear-gradient(180deg, #2a5a8a, #1e3a5c); height: 100px; }
+        .t2 .tower-bar { background: linear-gradient(180deg, #3278b0, #1e5a8a); height: 200px; }
+        .t3 .tower-bar { background: linear-gradient(180deg, var(--accent), #1a7ab5); height: 320px; }
+        .t4 .tower-bar { background: linear-gradient(180deg, #7dd3fc, var(--accent)); height: 400px; }
+        .tower-days { position: absolute; top: 16px; left: 0; right: 0; font-size: 36px; font-weight: 900; color: #fff; letter-spacing: -1px; z-index: 1; }
+        .tower-days-label { position: absolute; top: 56px; left: 0; right: 0; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.6); z-index: 1; }
+        .tower-fte { position: absolute; bottom: 14px; left: 0; right: 0; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5); z-index: 1; }
+        .tower-clients { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+        .tower-clients-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Breakdown bars */
-        .bars-section { margin-top: 80px; }
-        .bar-item { margin-bottom: 28px; }
-        .bar-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
-        .bar-name { font-size: 15px; font-weight: 600; color: #fff; }
-        .bar-info { font-size: 12px; color: var(--text-muted); }
-        .bar-saved { font-size: 15px; font-weight: 700; color: var(--accent); }
-        .bar-track { width: 100%; height: 40px; background: rgba(255,255,255,0.04); border-radius: 10px; overflow: hidden; position: relative; }
-        .bar-fill-outer { height: 100%; border-radius: 10px; transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1); display: flex; align-items: center; justify-content: flex-end; padding-right: 16px; }
-        .bar-fill-label { font-size: 12px; font-weight: 700; color: #fff; white-space: nowrap; }
-        .bar-fill-outer.c1 { background: linear-gradient(90deg, rgba(56,189,248,0.15), rgba(56,189,248,0.5)); }
-        .bar-fill-outer.c2 { background: linear-gradient(90deg, rgba(97,189,79,0.15), rgba(97,189,79,0.5)); }
-        .bar-fill-outer.c3 { background: linear-gradient(90deg, rgba(195,119,224,0.15), rgba(195,119,224,0.5)); }
-        .bar-detail { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-        .bar-tag { font-size: 11px; padding: 3px 10px; border-radius: 100px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); color: var(--text-muted); }
+        /* ── Metric row below towers ── */
+        .metric-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px; }
+        .metric-mini { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 12px; text-align: center; }
+        .metric-mini .mm-val { font-size: 18px; font-weight: 800; color: var(--accent); }
+        .metric-mini .mm-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
 
-        /* Vorher / Nachher */
-        .versus { margin-top: 80px; }
-        .vs-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: center; }
-        .vs-card { padding: 40px 32px; text-align: center; }
-        .vs-card.before { background: linear-gradient(135deg, rgba(235,90,70,0.08), rgba(235,90,70,0.02)); border-radius: 16px 0 0 16px; border: 1px solid rgba(235,90,70,0.2); border-right: none; }
-        .vs-card.after { background: linear-gradient(135deg, rgba(97,189,79,0.02), rgba(97,189,79,0.08)); border-radius: 0 16px 16px 0; border: 1px solid rgba(97,189,79,0.2); border-left: none; }
-        .vs-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+        /* ── What's automated ── */
+        .auto-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+        .auto-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; transition: border-color 0.3s; }
+        .auto-card:hover { border-color: rgba(56,189,248,0.3); }
+        .auto-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 16px; }
+        .auto-icon.i1 { background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.25); }
+        .auto-icon.i2 { background: rgba(97,189,79,0.12); border: 1px solid rgba(97,189,79,0.25); }
+        .auto-icon.i3 { background: rgba(195,119,224,0.12); border: 1px solid rgba(195,119,224,0.25); }
+        .auto-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+        .auto-time { font-size: 13px; font-weight: 600; margin-bottom: 14px; }
+        .auto-time.t1 { color: var(--accent); }
+        .auto-time.t2 { color: var(--green); }
+        .auto-time.t3 { color: var(--purple); }
+        .auto-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px; }
+        .auto-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .auto-tag { font-size: 11px; padding: 3px 10px; border-radius: 100px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); color: var(--text-muted); }
+
+        /* ── Vorher / Nachher ── */
+        .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+        .vs-card { padding: 48px 36px; text-align: center; position: relative; }
+        .vs-card.before { background: linear-gradient(180deg, rgba(235,90,70,0.06), var(--bg-card)); border-right: 1px solid var(--border); }
+        .vs-card.before::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--red); }
+        .vs-card.after { background: linear-gradient(180deg, rgba(97,189,79,0.06), var(--bg-card)); }
+        .vs-card.after::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--green); }
+        .vs-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
         .vs-label.before { color: var(--red); }
         .vs-label.after { color: var(--green); }
-        .vs-val { font-size: 56px; font-weight: 900; color: #fff; line-height: 1; letter-spacing: -2px; }
-        .vs-unit { font-size: 14px; color: var(--text-muted); margin-top: 8px; }
-        .vs-detail { font-size: 13px; color: var(--text-muted); margin-top: 20px; line-height: 1.6; max-width: 280px; margin-left: auto; margin-right: auto; }
-        .vs-arrow { width: 60px; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; }
-        .vs-arrow-circle { width: 48px; height: 48px; border-radius: 50%; background: var(--bg); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--accent); }
+        .vs-val { font-size: 64px; font-weight: 900; color: #fff; line-height: 1; letter-spacing: -3px; }
+        .vs-unit { font-size: 15px; color: var(--text-muted); margin-top: 8px; }
+        .vs-list { list-style: none; margin-top: 28px; text-align: left; max-width: 260px; margin-left: auto; margin-right: auto; }
+        .vs-list li { font-size: 13px; color: var(--text-muted); padding: 5px 0; padding-left: 20px; position: relative; line-height: 1.5; }
+        .vs-list li::before { content: ''; position: absolute; left: 0; top: 11px; width: 8px; height: 8px; border-radius: 2px; }
+        .vs-card.before .vs-list li::before { background: rgba(235,90,70,0.4); }
+        .vs-card.after .vs-list li::before { background: rgba(97,189,79,0.4); }
 
-        /* Footer */
+        /* ── Footer ── */
         .footer { padding: 48px 0; text-align: center; border-top: 1px solid var(--border); margin-top: 80px; }
         .footer-grid { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; margin-bottom: 24px; }
         .footer-item { text-align: center; }
         .footer-item .flabel { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
         .footer-item .fvalue { font-size: 14px; font-weight: 600; color: #fff; margin-top: 4px; }
         .footer-note { font-size: 13px; color: var(--text-muted); }
-        .footer-calc { font-size: 11px; color: var(--text-muted); margin-top: 16px; opacity: 0.6; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .footer-calc { font-size: 11px; color: var(--text-muted); margin-top: 16px; opacity: 0.5; max-width: 600px; margin-left: auto; margin-right: auto; }
         .status-active { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: rgba(97,189,79,0.15); border: 1px solid rgba(97,189,79,0.3); border-radius: 100px; font-size: 13px; font-weight: 500; color: var(--green); }
         .status-dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
-        /* Mobile */
+        /* ── Mobile ── */
         @media (max-width: 768px) {
-            .hero { padding: 60px 16px 48px; }
-            .big-number { font-size: 80px; letter-spacing: -3px; }
-            .big-unit { font-size: 22px; }
-            .slider-num { font-size: 36px; }
+            .hero { padding: 60px 16px 32px; }
+            .hero h1 { font-size: 26px; }
+            .hero p { font-size: 15px; }
             .container { padding: 0 16px; }
             section { padding: 48px 0; }
-            .section-title { font-size: 24px; margin-bottom: 32px; }
-            .time-grid { grid-template-columns: 1fr; gap: 12px; }
-            .time-card { padding: 20px; }
-            .time-card .tc-val { font-size: 28px; }
-            .vs-row { grid-template-columns: 1fr; gap: 0; }
-            .vs-card.before { border-radius: 16px 16px 0 0; border-right: 1px solid rgba(235,90,70,0.2); border-bottom: none; }
-            .vs-card.after { border-radius: 0 0 16px 16px; border-left: 1px solid rgba(97,189,79,0.2); border-top: none; }
-            .vs-arrow { width: auto; height: 48px; }
-            .vs-val { font-size: 40px; }
-            .bar-top { flex-direction: column; gap: 4px; align-items: flex-start; }
+            .section-title { font-size: 24px; }
+            .towers { grid-template-columns: repeat(4, 1fr); gap: 8px; min-height: 280px; }
+            .tower-days { font-size: 22px; top: 10px; }
+            .tower-days-label { font-size: 9px; top: 36px; }
+            .tower-fte { font-size: 10px; bottom: 8px; }
+            .t1 .tower-bar { height: 70px; }
+            .t2 .tower-bar { height: 130px; }
+            .t3 .tower-bar { height: 210px; }
+            .t4 .tower-bar { height: 260px; }
+            .tower-clients { font-size: 13px; }
+            .metric-row { grid-template-columns: repeat(2, 1fr); }
+            .auto-grid { grid-template-columns: 1fr; }
+            .vs-grid { grid-template-columns: 1fr; }
+            .vs-card.before { border-right: none; border-bottom: 1px solid var(--border); }
+            .vs-val { font-size: 48px; }
             .footer-grid { gap: 24px; }
         }
     </style>
@@ -120,146 +128,173 @@
 
 <div class="hero">
     <div class="container">
-        <div class="hero-badge">FENGLER CONSULTING — INTERNE AUTOMATISIERUNG</div>
-
-        <div class="big-number-wrap">
-            <div class="big-number" id="hero-days">18.6</div>
-            <div class="big-unit">Arbeitstage pro Jahr gespart</div>
-        </div>
-        <div class="big-context">Das entspricht <strong id="hero-weeks">3.7</strong> vollen Arbeitswochen, die du f&uuml;r strategische Arbeit nutzen kannst statt f&uuml;r Klicks im Werbeanzeigenmanager.</div>
-
-        <!-- Mini cards -->
-        <div class="time-grid">
-            <div class="time-card">
-                <div class="tc-val" id="m-week">215</div>
-                <div class="tc-unit">Minuten</div>
-                <div class="tc-label">Pro Woche</div>
-            </div>
-            <div class="time-card">
-                <div class="tc-val" id="m-month">15.5</div>
-                <div class="tc-unit">Stunden</div>
-                <div class="tc-label">Pro Monat</div>
-            </div>
-            <div class="time-card">
-                <div class="tc-val" id="m-year">18.6</div>
-                <div class="tc-unit">Arbeitstage</div>
-                <div class="tc-label">Pro Jahr</div>
-            </div>
-        </div>
-
-        <!-- Single slider -->
-        <div class="slider-section">
-            <div class="slider-label">Anzahl Kunden</div>
-            <div class="slider-wrap">
-                <input type="range" min="1" max="100" value="15" id="slider" step="1" oninput="update()">
-                <div>
-                    <div class="slider-num" id="slider-val">15</div>
-                    <div class="slider-num-label">Kunden</div>
-                </div>
-            </div>
-        </div>
+        <div class="hero-badge">FENGLER CONSULTING &mdash; INTERNE AUTOMATISIERUNG</div>
+        <h1>Wie viel Zeit spart die Meta Ads Automatisierung?</h1>
+        <p>Alles, was vorher manuell im Werbeanzeigenmanager passiert ist &mdash; Budget, Reports, Optimierung, Kampagnenerstellung &mdash; l&auml;uft jetzt per Sprachbefehl in unter 3 Minuten.</p>
     </div>
 </div>
 
 <div class="container">
 
-<!-- Breakdown -->
-<section class="bars-section">
-    <div class="section-label">Aufschl&uuml;sselung</div>
-    <div class="section-title">Wo die Zeit gespart wird</div>
+<!-- ── Scale Towers ── -->
+<section class="scale-section">
+    <div class="section-label">Skalierung</div>
+    <div class="section-title">Je mehr Kunden, desto gr&ouml;&szlig;er der Hebel</div>
+    <div class="section-sub">Gesparte Arbeitstage pro Jahr &mdash; berechnet aus Quick Actions, Ad-Optimierung und PA-Kampagnenerstellung.</div>
 
-    <div class="bar-item">
-        <div class="bar-top">
-            <div>
-                <span class="bar-name">Quick Actions</span>
-                <span class="bar-info"> &mdash; t&auml;glich pro Kunde</span>
+    <div class="towers">
+        <div class="tower t1">
+            <div class="tower-bar-wrap">
+                <div class="tower-bar">
+                    <div class="tower-days">86</div>
+                    <div class="tower-days-label">Arbeitstage</div>
+                </div>
             </div>
-            <span class="bar-saved" id="bd-qa-val">550 min/Monat</span>
+            <div class="tower-clients">25</div>
+            <div class="tower-clients-label">Kunden</div>
         </div>
-        <div class="bar-track">
-            <div class="bar-fill-outer c1" id="bar-qa" style="width:0%">
-                <span class="bar-fill-label" id="bar-qa-lbl"></span>
+        <div class="tower t2">
+            <div class="tower-bar-wrap">
+                <div class="tower-bar">
+                    <div class="tower-days">171</div>
+                    <div class="tower-days-label">Arbeitstage</div>
+                </div>
             </div>
+            <div class="tower-clients">50</div>
+            <div class="tower-clients-label">Kunden</div>
         </div>
-        <div class="bar-detail">
-            <span class="bar-tag">Budget anpassen</span>
-            <span class="bar-tag">Kampagne stoppen / starten</span>
-            <span class="bar-tag">Performance-Report</span>
-            <span class="bar-tag">Status-Check</span>
+        <div class="tower t3">
+            <div class="tower-bar-wrap">
+                <div class="tower-bar">
+                    <div class="tower-days">342</div>
+                    <div class="tower-days-label">Arbeitstage</div>
+                    <div class="tower-fte">&asymp; 1,3 Vollzeitstellen</div>
+                </div>
+            </div>
+            <div class="tower-clients">100</div>
+            <div class="tower-clients-label">Kunden</div>
+        </div>
+        <div class="tower t4">
+            <div class="tower-bar-wrap">
+                <div class="tower-bar">
+                    <div class="tower-days">514</div>
+                    <div class="tower-days-label">Arbeitstage</div>
+                    <div class="tower-fte">&asymp; 2 Vollzeitstellen</div>
+                </div>
+            </div>
+            <div class="tower-clients">150</div>
+            <div class="tower-clients-label">Kunden</div>
         </div>
     </div>
 
-    <div class="bar-item">
-        <div class="bar-top">
-            <div>
-                <span class="bar-name">Ad-Optimierung</span>
-                <span class="bar-info"> &mdash; alle 14 Tage pro Kunde</span>
-            </div>
-            <span class="bar-saved" id="bd-opt-val">112 min/Monat</span>
+    <!-- Mini metrics row: per-week + per-month for 50 clients -->
+    <div class="metric-row">
+        <div class="metric-mini">
+            <div class="mm-val">26 h</div>
+            <div class="mm-label">/ Woche bei 50 KD</div>
         </div>
-        <div class="bar-track">
-            <div class="bar-fill-outer c2" id="bar-opt" style="width:0%">
-                <span class="bar-fill-label" id="bar-opt-lbl"></span>
-            </div>
+        <div class="metric-mini">
+            <div class="mm-val">114 h</div>
+            <div class="mm-label">/ Monat bei 50 KD</div>
         </div>
-        <div class="bar-detail">
-            <span class="bar-tag">Top-Ad identifizieren</span>
-            <span class="bar-tag">Creatives hochladen</span>
-            <span class="bar-tag">Ad duplizieren</span>
-            <span class="bar-tag">Performance vergleichen</span>
+        <div class="metric-mini">
+            <div class="mm-val">53 h</div>
+            <div class="mm-label">/ Woche bei 100 KD</div>
         </div>
-    </div>
-
-    <div class="bar-item">
-        <div class="bar-top">
-            <div>
-                <span class="bar-name">PA-Kampagnen-Erstellung</span>
-                <span class="bar-info"> &mdash; 40 min pro Kampagne gespart</span>
-            </div>
-            <span class="bar-saved" id="bd-pa-val">160 min/Monat</span>
-        </div>
-        <div class="bar-track">
-            <div class="bar-fill-outer c3" id="bar-pa" style="width:0%">
-                <span class="bar-fill-label" id="bar-pa-lbl"></span>
-            </div>
-        </div>
-        <div class="bar-detail">
-            <span class="bar-tag">Trello-Sync</span>
-            <span class="bar-tag">Creative-Analyse</span>
-            <span class="bar-tag">Formular erstellen</span>
-            <span class="bar-tag">Kampagne + AdSet + Ads</span>
-            <span class="bar-tag">Trello + Airtable</span>
+        <div class="metric-mini">
+            <div class="mm-val">228 h</div>
+            <div class="mm-label">/ Monat bei 100 KD</div>
         </div>
     </div>
 </section>
 
 <hr class="divider">
 
-<!-- Vorher / Nachher -->
-<section class="versus">
-    <div class="section-label">Vergleich</div>
-    <div class="section-title">Vorher vs. Nachher</div>
+<!-- ── Was wird automatisiert ── -->
+<section>
+    <div class="section-label">Automatisierung</div>
+    <div class="section-title">Drei Bereiche, eine Plattform</div>
+    <div class="section-sub">Alles, was ein OMM t&auml;glich, alle 14 Tage oder bei neuen Kunden manuell macht.</div>
 
-    <div class="vs-row">
-        <div class="vs-card before">
-            <div class="vs-label before">Manuell</div>
-            <div class="vs-val" id="vs-before">15.5</div>
-            <div class="vs-unit">Stunden / Monat</div>
-            <div class="vs-detail">Werbeanzeigenmanager &ouml;ffnen, Budgets anpassen, Kampagnen duplizieren, Formulare zusammenklicken, Creatives hochladen, Reports bauen</div>
+    <div class="auto-grid">
+        <div class="auto-card">
+            <div class="auto-icon i1">&#9889;</div>
+            <div class="auto-title">Quick Actions</div>
+            <div class="auto-time t1">5 min gespart / Kunde / Tag</div>
+            <div class="auto-desc">Tagesgesch&auml;ft: Budget &auml;ndern, Kampagnen starten oder stoppen, Performance abrufen &mdash; alles in einem Satz statt in 12 Klicks.</div>
+            <div class="auto-tags">
+                <span class="auto-tag">Budget anpassen</span>
+                <span class="auto-tag">Start / Stop</span>
+                <span class="auto-tag">Reports</span>
+                <span class="auto-tag">Status-Check</span>
+            </div>
         </div>
-        <div class="vs-arrow">
-            <div class="vs-arrow-circle">&rarr;</div>
+        <div class="auto-card">
+            <div class="auto-icon i2">&#9881;</div>
+            <div class="auto-title">Ad-Optimierung</div>
+            <div class="auto-time t2">8 min gespart / Kunde / Durchlauf</div>
+            <div class="auto-desc">Alle 14 Tage: Beste Ad identifizieren, neue Creatives hochladen und duplizieren. Automatisch die richtige Kampagne, das richtige Format.</div>
+            <div class="auto-tags">
+                <span class="auto-tag">Top-Ad finden</span>
+                <span class="auto-tag">Creative Upload</span>
+                <span class="auto-tag">Ad duplizieren</span>
+            </div>
         </div>
-        <div class="vs-card after">
-            <div class="vs-label after">Automatisiert</div>
-            <div class="vs-val">&lt; 3</div>
-            <div class="vs-unit">Minuten / Aufgabe</div>
-            <div class="vs-detail">Ein Satz reicht &mdash; Claude Code erledigt den Rest. Kampagne erstellen, Budget &auml;ndern, Report abrufen, Ads optimieren.</div>
+        <div class="auto-card">
+            <div class="auto-icon i3">&#128640;</div>
+            <div class="auto-title">PA-Kampagnen</div>
+            <div class="auto-time t3">40 min gespart / Kampagne</div>
+            <div class="auto-desc">Komplette Lead-Ad-Kampagne: Trello-Sync, Creative-Analyse, Formular, Kampagne + AdSet + Ads, Trello-Karte verschieben, Airtable-Eintrag &mdash; in unter 3 Minuten statt 40+.</div>
+            <div class="auto-tags">
+                <span class="auto-tag">Trello-Sync</span>
+                <span class="auto-tag">Formular</span>
+                <span class="auto-tag">Creatives</span>
+                <span class="auto-tag">Kampagne</span>
+                <span class="auto-tag">Airtable</span>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Footer -->
+<hr class="divider">
+
+<!-- ── Vorher / Nachher ── -->
+<section>
+    <div class="section-label">Vergleich</div>
+    <div class="section-title">Vorher vs. Nachher</div>
+    <div class="section-sub">Am Beispiel einer einzelnen Aufgabe &mdash; z.B. &bdquo;Erstelle die CEREC-Kampagne f&uuml;r Mustermann&ldquo;.</div>
+
+    <div class="vs-grid">
+        <div class="vs-card before">
+            <div class="vs-label before">Manuell</div>
+            <div class="vs-val">40+</div>
+            <div class="vs-unit">Minuten</div>
+            <ul class="vs-list">
+                <li>Werbeanzeigenmanager &ouml;ffnen</li>
+                <li>Kampagne + Anzeigengruppe anlegen</li>
+                <li>Targeting konfigurieren</li>
+                <li>Instant Form zusammenklicken</li>
+                <li>Creatives hochladen</li>
+                <li>Anzeigen erstellen + benennen</li>
+                <li>Trello-Karte verschieben</li>
+                <li>Airtable aktualisieren</li>
+            </ul>
+        </div>
+        <div class="vs-card after">
+            <div class="vs-label after">Automatisiert</div>
+            <div class="vs-val">&lt; 3</div>
+            <div class="vs-unit">Minuten</div>
+            <ul class="vs-list">
+                <li>&bdquo;Erstelle Kampagne f&uuml;r Mustermann CEREC&ldquo;</li>
+                <li>Trello-Hinweise best&auml;tigen</li>
+                <li>Creative-Zuordnung pr&uuml;fen</li>
+                <li>Fertig &mdash; alles andere l&auml;uft automatisch</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ── Footer ── -->
 <div class="footer">
     <div class="footer-grid">
         <div class="footer-item"><div class="flabel">Status</div><div class="fvalue"><span class="status-active"><span class="status-dot"></span> Aktiv</span></div></div>
@@ -268,69 +303,12 @@
         <div class="footer-item"><div class="flabel">Live seit</div><div class="fvalue">05.04.2026</div></div>
     </div>
     <div class="footer-note">Fengler Consulting &mdash; Meta Ads Automatisierung</div>
-    <div class="footer-calc">Berechnung: Quick Actions 5 min/Kunde/Tag &middot; Ad-Optimierung 8 min/Kunde 2&times;/Monat &middot; PA-Kampagnen 40 min/Kampagne &middot; 22 Arbeitstage/Monat &middot; 260 Arbeitstage/Jahr &middot; 8h/Arbeitstag</div>
+    <div class="footer-calc">Berechnung: Quick Actions 5 min/Kunde/Tag &middot; Ad-Optimierung 8 min/Kunde 2&times;/Monat &middot; PA-Kampagnen 40 min/Kampagne (~27% der Kunden/Monat) &middot; 22 Arbeitstage/Monat &middot; 260 Arbeitstage/Jahr &middot; 8h = 1 Arbeitstag</div>
 </div>
 
 </div>
-
-<script>
-function update() {
-    const n = parseInt(document.getElementById('slider').value);
-    document.getElementById('slider-val').textContent = n;
-
-    // Quick Actions: 5 min/Kunde/Tag, 22 Tage/Monat
-    const qaMonth = n * 5 * 22;
-    const qaYear  = n * 5 * 260;
-
-    // Ad-Optimierung: 8 min/Kunde, 2x/Monat
-    const optMonth = n * 8 * 2;
-    const optYear  = optMonth * 12;
-
-    // PA-Kampagnen: ~30% der Kunden bekommen pro Monat eine neue PA-Kampagne
-    // Bei 15 Kunden = ca. 4 Kampagnen/Monat
-    const paCount = Math.max(1, Math.round(n * 0.27));
-    const paMonth = paCount * 40;
-    const paYear  = paMonth * 12;
-
-    // Totals
-    const totalMonthMin = qaMonth + optMonth + paMonth;
-    const totalMonthH   = totalMonthMin / 60;
-    const totalWeekMin  = Math.round(totalMonthMin / 4.3);
-    const totalYearH    = (qaYear + optYear + paYear) / 60;
-    const totalYearDays = totalYearH / 8;
-    const totalYearWeeks = totalYearDays / 5;
-
-    // Hero
-    document.getElementById('hero-days').textContent  = totalYearDays.toFixed(1);
-    document.getElementById('hero-weeks').textContent  = totalYearWeeks.toFixed(1);
-
-    // Mini cards
-    document.getElementById('m-week').textContent  = totalWeekMin;
-    document.getElementById('m-month').textContent = totalMonthH.toFixed(1);
-    document.getElementById('m-year').textContent  = totalYearDays.toFixed(1);
-
-    // Bars — relative to max
-    const maxVal = Math.max(qaMonth, optMonth, paMonth, 1);
-
-    document.getElementById('bd-qa-val').textContent  = qaMonth + ' min/Monat';
-    document.getElementById('bar-qa').style.width      = (qaMonth / maxVal * 100) + '%';
-    document.getElementById('bar-qa-lbl').textContent   = (qaMonth / 60).toFixed(1) + ' h';
-
-    document.getElementById('bd-opt-val').textContent = optMonth + ' min/Monat';
-    document.getElementById('bar-opt').style.width     = (optMonth / maxVal * 100) + '%';
-    document.getElementById('bar-opt-lbl').textContent  = (optMonth / 60).toFixed(1) + ' h';
-
-    document.getElementById('bd-pa-val').textContent  = paMonth + ' min/Monat (' + paCount + ' Kampagnen)';
-    document.getElementById('bar-pa').style.width      = (paMonth / maxVal * 100) + '%';
-    document.getElementById('bar-pa-lbl').textContent   = (paMonth / 60).toFixed(1) + ' h';
-
-    // Versus
-    document.getElementById('vs-before').textContent = totalMonthH.toFixed(1);
-}
-
-update();
-</script>
 </body>
 </html>
+
 
 
