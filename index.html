@@ -12,6 +12,7 @@
             --bg: #0F172A; --bg-card: #1E293B; --text: #E2E8F0;
             --text-muted: #94A3B8; --accent: #38BDF8;
             --accent-glow: rgba(56,189,248,0.15); --border: #334155;
+            --make-purple: #A78BFA; --airtable-teal: #18BFFF;
         }
         body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
 
@@ -19,7 +20,7 @@
         .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse at 50% 0%, rgba(56,189,248,0.08) 0%, transparent 60%); pointer-events: none; }
         .hero-badge { display: inline-block; padding: 6px 16px; background: var(--accent-glow); border: 1px solid rgba(56,189,248,0.3); border-radius: 100px; font-size: 13px; font-weight: 500; color: var(--accent); letter-spacing: 0.5px; margin-bottom: 32px; }
         .hero h1 { font-size: clamp(28px, 5vw, 48px); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 16px; background: linear-gradient(135deg, #fff 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .hero p { font-size: 18px; color: var(--text-muted); max-width: 640px; margin: 0 auto; }
+        .hero p { font-size: 18px; color: var(--text-muted); max-width: 680px; margin: 0 auto; }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
         section { padding: 80px 0; }
@@ -52,25 +53,33 @@
         .metric-mini .mm-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
 
         /* ── What's automated ── */
-        .auto-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+        .auto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .auto-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; transition: border-color 0.3s; }
         .auto-card:hover { border-color: rgba(56,189,248,0.3); }
         .auto-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 16px; }
         .auto-icon.i1 { background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.25); }
         .auto-icon.i2 { background: rgba(97,189,79,0.12); border: 1px solid rgba(97,189,79,0.25); }
         .auto-icon.i3 { background: rgba(195,119,224,0.12); border: 1px solid rgba(195,119,224,0.25); }
+        .auto-icon.i4 { background: rgba(255,159,26,0.12); border: 1px solid rgba(255,159,26,0.25); }
+        .auto-icon.i5 { background: rgba(167,139,250,0.12); border: 1px solid rgba(167,139,250,0.25); }
+        .auto-icon.i6 { background: rgba(24,191,255,0.12); border: 1px solid rgba(24,191,255,0.25); }
         .auto-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; }
         .auto-time { font-size: 13px; font-weight: 600; margin-bottom: 14px; }
         .auto-time.t1 { color: var(--accent); }
         .auto-time.t2 { color: var(--green); }
         .auto-time.t3 { color: var(--purple); }
+        .auto-time.t4 { color: var(--orange); }
+        .auto-time.t5 { color: var(--make-purple); }
+        .auto-time.t6 { color: var(--airtable-teal); }
         .auto-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px; }
         .auto-tags { display: flex; flex-wrap: wrap; gap: 6px; }
         .auto-tag { font-size: 11px; padding: 3px 10px; border-radius: 100px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); color: var(--text-muted); }
 
         /* ── Vorher / Nachher ── */
+        .vs-wrapper { display: flex; flex-direction: column; gap: 32px; }
+        .vs-label-top { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 8px; }
         .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
-        .vs-card { padding: 48px 36px; text-align: center; position: relative; }
+        .vs-card { padding: 40px 36px; text-align: center; position: relative; }
         .vs-card.before { background: linear-gradient(180deg, rgba(235,90,70,0.06), var(--bg-card)); border-right: 1px solid var(--border); }
         .vs-card.before::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--red); }
         .vs-card.after { background: linear-gradient(180deg, rgba(97,189,79,0.06), var(--bg-card)); }
@@ -78,9 +87,9 @@
         .vs-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
         .vs-label.before { color: var(--red); }
         .vs-label.after { color: var(--green); }
-        .vs-val { font-size: 64px; font-weight: 900; color: #fff; line-height: 1; letter-spacing: -3px; }
+        .vs-val { font-size: 56px; font-weight: 900; color: #fff; line-height: 1; letter-spacing: -3px; }
         .vs-unit { font-size: 15px; color: var(--text-muted); margin-top: 8px; }
-        .vs-list { list-style: none; margin-top: 28px; text-align: left; max-width: 260px; margin-left: auto; margin-right: auto; }
+        .vs-list { list-style: none; margin-top: 24px; text-align: left; max-width: 260px; margin-left: auto; margin-right: auto; }
         .vs-list li { font-size: 13px; color: var(--text-muted); padding: 5px 0; padding-left: 20px; position: relative; line-height: 1.5; }
         .vs-list li::before { content: ''; position: absolute; left: 0; top: 11px; width: 8px; height: 8px; border-radius: 2px; }
         .vs-card.before .vs-list li::before { background: rgba(235,90,70,0.4); }
@@ -93,7 +102,6 @@
         .footer-item .flabel { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
         .footer-item .fvalue { font-size: 14px; font-weight: 600; color: #fff; margin-top: 4px; }
         .footer-note { font-size: 13px; color: var(--text-muted); }
-        .footer-calc { font-size: 11px; color: var(--text-muted); margin-top: 16px; opacity: 0.5; max-width: 600px; margin-left: auto; margin-right: auto; }
         .status-active { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: rgba(97,189,79,0.15); border: 1px solid rgba(97,189,79,0.3); border-radius: 100px; font-size: 13px; font-weight: 500; color: var(--green); }
         .status-dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
@@ -119,7 +127,7 @@
             .auto-grid { grid-template-columns: 1fr; }
             .vs-grid { grid-template-columns: 1fr; }
             .vs-card.before { border-right: none; border-bottom: 1px solid var(--border); }
-            .vs-val { font-size: 48px; }
+            .vs-val { font-size: 42px; }
             .footer-grid { gap: 24px; }
         }
     </style>
@@ -129,8 +137,8 @@
 <div class="hero">
     <div class="container">
         <div class="hero-badge">FENGLER CONSULTING &mdash; INTERNE AUTOMATISIERUNG</div>
-        <h1>Wie viel Zeit spart die Meta Ads Automatisierung?</h1>
-        <p>Alles, was vorher manuell im Werbeanzeigenmanager passiert ist &mdash; Budget, Reports, Optimierung &mdash; l&auml;uft jetzt per Sprachbefehl in unter 3 Minuten. Plus 40 Minuten gespart bei jeder neuen PA-Kampagne.</p>
+        <h1>Wie viel Zeit spart die Automatisierung?</h1>
+        <p>Alles, was vorher manuell im Werbeanzeigenmanager, in Trello, Airtable und Make.com passiert ist &mdash; l&auml;uft jetzt per Sprachbefehl. Egal ob Patientengewinnung oder Mitarbeitergewinnung.</p>
     </div>
 </div>
 
@@ -140,7 +148,7 @@
 <section class="scale-section">
     <div class="section-label">Skalierung</div>
     <div class="section-title">Je mehr Kunden, desto gr&ouml;&szlig;er der Hebel</div>
-    <div class="section-sub">Laufend gesparte Arbeitstage pro Jahr &mdash; durch automatisierte Quick Actions und Ad-Optimierung.</div>
+    <div class="section-sub">Gesparte Arbeitstage pro Jahr &mdash; allein durch das t&auml;gliche Kampagnenmanagement und die regelm&auml;&szlig;ige Anzeigen-Optimierung.</div>
 
     <div class="towers">
         <div class="tower t1">
@@ -187,7 +195,6 @@
         </div>
     </div>
 
-    <!-- Mini metrics row: per-week + per-month for 50 and 100 clients -->
     <div class="metric-row">
         <div class="metric-mini">
             <div class="mm-val">24 h</div>
@@ -213,47 +220,85 @@
 <!-- ── Was wird automatisiert ── -->
 <section>
     <div class="section-label">Automatisierung</div>
-    <div class="section-title">Drei Bereiche, eine Plattform</div>
-    <div class="section-sub">Zwei laufende Automatisierungen + eine einmalige Ersparnis pro Neukunde.</div>
+    <div class="section-title">Was alles automatisch l&auml;uft</div>
+    <div class="section-sub">Zwei laufende Automatisierungen f&uuml;r alle Kunden + einmalige Aufgaben bei jedem neuen Kunden oder Kampagnenwechsel.</div>
 
     <div class="auto-grid">
+        <!-- Laufend -->
         <div class="auto-card">
             <div class="auto-icon i1">&#9889;</div>
-            <div class="auto-title">Quick Actions</div>
-            <div class="auto-time t1">5 min gespart / Kunde / Tag</div>
-            <div class="auto-desc">Tagesgesch&auml;ft: Budget &auml;ndern, Kampagnen starten oder stoppen, Performance abrufen &mdash; alles in einem Satz statt in 12 Klicks.</div>
+            <div class="auto-title">Kampagnen verwalten</div>
+            <div class="auto-time t1">~5 Min gespart pro Kunde pro Tag</div>
+            <div class="auto-desc">Tagesgesch&auml;ft: Budget &auml;ndern, Kampagnen starten oder stoppen, Performance abrufen, Status pr&uuml;fen &mdash; alles in einem Satz statt in vielen Klicks im Ads Manager.</div>
             <div class="auto-tags">
                 <span class="auto-tag">Budget anpassen</span>
                 <span class="auto-tag">Start / Stop</span>
                 <span class="auto-tag">Reports</span>
                 <span class="auto-tag">Status-Check</span>
-                <span class="auto-tag" style="color:var(--accent); border-color:rgba(56,189,248,0.3);">laufend</span>
+                <span class="auto-tag" style="color:var(--accent); border-color:rgba(56,189,248,0.3);">l&auml;uft t&auml;glich</span>
             </div>
         </div>
         <div class="auto-card">
-            <div class="auto-icon i2">&#9881;</div>
-            <div class="auto-title">Ad-Optimierung</div>
-            <div class="auto-time t2">8 min gespart / Kunde / Durchlauf</div>
-            <div class="auto-desc">Alle 14 Tage: Beste Ad identifizieren, neue Creatives hochladen und duplizieren. Automatisch die richtige Kampagne, das richtige Format.</div>
+            <div class="auto-icon i2">&#128200;</div>
+            <div class="auto-title">Anzeigen optimieren</div>
+            <div class="auto-time t2">~28 Min gespart pro Durchlauf</div>
+            <div class="auto-desc">Alle 14 Tage pro Kunde: Erfolgreichste Anzeige finden, neue Bilder/Videos hochladen und neue Anzeigen mit dem bew&auml;hrten Text erstellen.</div>
             <div class="auto-tags">
-                <span class="auto-tag">Top-Ad finden</span>
-                <span class="auto-tag">Creative Upload</span>
-                <span class="auto-tag">Ad duplizieren</span>
+                <span class="auto-tag">Beste Anzeige finden</span>
+                <span class="auto-tag">Neue Bilder/Videos</span>
+                <span class="auto-tag">Anzeigen erstellen</span>
                 <span class="auto-tag" style="color:var(--green); border-color:rgba(97,189,79,0.3);">alle 14 Tage</span>
             </div>
         </div>
+
+        <!-- Einmalig pro Kunde -->
         <div class="auto-card">
-            <div class="auto-icon i3">&#128640;</div>
-            <div class="auto-title">PA-Kampagnen-Erstellung</div>
-            <div class="auto-time t3">40 min gespart / Neukunde</div>
-            <div class="auto-desc">Komplette Lead-Ad-Kampagne beim Onboarding: Trello-Sync, Creative-Analyse, Formular, Kampagne + AdSet + Ads, Trello + Airtable &mdash; in unter 3 Minuten statt 40+.</div>
+            <div class="auto-icon i3">&#127919;</div>
+            <div class="auto-title">Kampagne erstellen (PA + MA)</div>
+            <div class="auto-time t3">~42 Min gespart pro Kampagne</div>
+            <div class="auto-desc">Komplette Kampagne mit Bewerbungsformular, Bildern/Videos und allen Anzeigen &mdash; inklusive Trello-Karte verschieben, Airtable aktualisieren und Kunde benachrichtigen.</div>
             <div class="auto-tags">
-                <span class="auto-tag">Trello-Sync</span>
                 <span class="auto-tag">Formular</span>
-                <span class="auto-tag">Creatives</span>
-                <span class="auto-tag">Kampagne</span>
+                <span class="auto-tag">Anzeigen</span>
+                <span class="auto-tag">Trello</span>
                 <span class="auto-tag">Airtable</span>
-                <span class="auto-tag" style="color:var(--purple); border-color:rgba(195,119,224,0.3);">einmalig pro Kunde</span>
+                <span class="auto-tag" style="color:var(--purple); border-color:rgba(195,119,224,0.3);">pro Neukunde</span>
+            </div>
+        </div>
+        <div class="auto-card">
+            <div class="auto-icon i4">&#128260;</div>
+            <div class="auto-title">Kampagnentyp umstellen</div>
+            <div class="auto-time t4">~57 Min gespart pro Umstellung</div>
+            <div class="auto-desc">Bestehende Kampagne von Website-Link auf Bewerbungsformular umstellen. Alle Bilder und Videos werden &uuml;bernommen, alte Kampagne wird pausiert &mdash; kein doppeltes Budget.</div>
+            <div class="auto-tags">
+                <span class="auto-tag">Formular erstellen</span>
+                <span class="auto-tag">Anzeigen &uuml;bernehmen</span>
+                <span class="auto-tag">Alte pausieren</span>
+                <span class="auto-tag" style="color:var(--orange); border-color:rgba(255,159,26,0.3);">bei Bedarf</span>
+            </div>
+        </div>
+        <div class="auto-card">
+            <div class="auto-icon i5">&#9889;</div>
+            <div class="auto-title">Lead-Weiterleitung einrichten</div>
+            <div class="auto-time t5">~23 Min gespart pro Einrichtung</div>
+            <div class="auto-desc">Bewerbungen landen nicht nur in Meta, sondern kommen automatisch in Airtable an. Claude Code richtet die Verbindung &uuml;ber Make.com ein.</div>
+            <div class="auto-tags">
+                <span class="auto-tag">Make.com</span>
+                <span class="auto-tag">Airtable</span>
+                <span class="auto-tag">Sofort-Benachrichtigung</span>
+                <span class="auto-tag" style="color:var(--make-purple); border-color:rgba(167,139,250,0.3);">pro Neukunde</span>
+            </div>
+        </div>
+        <div class="auto-card">
+            <div class="auto-icon i6">&#128100;</div>
+            <div class="auto-title">Neuen Kunden einrichten</div>
+            <div class="auto-time t6">~18 Min gespart pro Kunde</div>
+            <div class="auto-desc">Kunden-Infos reinkopieren &mdash; Claude Code erstellt daraus das komplette Profil: Stellen, Benefits, Werbekonto-Verkn&uuml;pfung. Alles bereit f&uuml;r die erste Kampagne.</div>
+            <div class="auto-tags">
+                <span class="auto-tag">Profil anlegen</span>
+                <span class="auto-tag">Werbekonto finden</span>
+                <span class="auto-tag">Instagram verknüpfen</span>
+                <span class="auto-tag" style="color:var(--airtable-teal); border-color:rgba(24,191,255,0.3);">pro Neukunde</span>
             </div>
         </div>
     </div>
@@ -265,34 +310,72 @@
 <section>
     <div class="section-label">Vergleich</div>
     <div class="section-title">Vorher vs. Nachher</div>
-    <div class="section-sub">Am Beispiel einer einzelnen Aufgabe &mdash; z.B. &bdquo;Erstelle die CEREC-Kampagne f&uuml;r Mustermann&ldquo;.</div>
+    <div class="section-sub">Zwei echte Beispiele &mdash; eine PA-Kampagne und eine MA-Aufgabe.</div>
 
-    <div class="vs-grid">
-        <div class="vs-card before">
-            <div class="vs-label before">Manuell</div>
-            <div class="vs-val">40+</div>
-            <div class="vs-unit">Minuten</div>
-            <ul class="vs-list">
-                <li>Werbeanzeigenmanager &ouml;ffnen</li>
-                <li>Kampagne + Anzeigengruppe anlegen</li>
-                <li>Targeting konfigurieren</li>
-                <li>Instant Form zusammenklicken</li>
-                <li>Creatives hochladen</li>
-                <li>Anzeigen erstellen + benennen</li>
-                <li>Trello-Karte verschieben</li>
-                <li>Airtable aktualisieren</li>
-            </ul>
+    <div class="vs-wrapper">
+        <!-- Beispiel 1: PA-Kampagne -->
+        <div>
+            <div class="vs-label-top">Beispiel: &bdquo;Erstelle die CEREC-Kampagne f&uuml;r Mustermann&ldquo;</div>
+            <div class="vs-grid">
+                <div class="vs-card before">
+                    <div class="vs-label before">Manuell</div>
+                    <div class="vs-val">40+</div>
+                    <div class="vs-unit">Minuten</div>
+                    <ul class="vs-list">
+                        <li>Werbeanzeigenmanager &ouml;ffnen</li>
+                        <li>Kampagne + Anzeigengruppe anlegen</li>
+                        <li>Zielgruppe konfigurieren</li>
+                        <li>Bewerbungsformular zusammenklicken</li>
+                        <li>Bilder/Videos hochladen</li>
+                        <li>Anzeigen erstellen + benennen</li>
+                        <li>Trello-Karte verschieben</li>
+                        <li>Airtable aktualisieren</li>
+                    </ul>
+                </div>
+                <div class="vs-card after">
+                    <div class="vs-label after">Automatisiert</div>
+                    <div class="vs-val">&lt; 3</div>
+                    <div class="vs-unit">Minuten</div>
+                    <ul class="vs-list">
+                        <li>&bdquo;Erstelle Kampagne f&uuml;r Mustermann CEREC&ldquo;</li>
+                        <li>Trello-Hinweise best&auml;tigen</li>
+                        <li>Bilder/Videos-Zuordnung pr&uuml;fen</li>
+                        <li>Fertig &mdash; alles andere l&auml;uft automatisch</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="vs-card after">
-            <div class="vs-label after">Automatisiert</div>
-            <div class="vs-val">&lt; 3</div>
-            <div class="vs-unit">Minuten</div>
-            <ul class="vs-list">
-                <li>&bdquo;Erstelle Kampagne f&uuml;r Mustermann CEREC&ldquo;</li>
-                <li>Trello-Hinweise best&auml;tigen</li>
-                <li>Creative-Zuordnung pr&uuml;fen</li>
-                <li>Fertig &mdash; alles andere l&auml;uft automatisch</li>
-            </ul>
+
+        <!-- Beispiel 2: MA Offsite → IF -->
+        <div>
+            <div class="vs-label-top">Beispiel: &bdquo;Stell die Lutz-Kampagne auf Instant Form um&ldquo;</div>
+            <div class="vs-grid">
+                <div class="vs-card before">
+                    <div class="vs-label before">Manuell</div>
+                    <div class="vs-val">60+</div>
+                    <div class="vs-unit">Minuten</div>
+                    <ul class="vs-list">
+                        <li>Neues Bewerbungsformular erstellen</li>
+                        <li>Filterfrage + Absage-Seite einrichten</li>
+                        <li>Neue Kampagne + Anzeigengruppe</li>
+                        <li>Jede Anzeige einzeln neu erstellen</li>
+                        <li>Video-Thumbnails manuell setzen</li>
+                        <li>Alte Kampagne pausieren</li>
+                        <li>Pr&uuml;fen ob nichts vergessen wurde</li>
+                    </ul>
+                </div>
+                <div class="vs-card after">
+                    <div class="vs-label after">Automatisiert</div>
+                    <div class="vs-val">&lt; 3</div>
+                    <div class="vs-unit">Minuten</div>
+                    <ul class="vs-list">
+                        <li>&bdquo;Stell Lutz auf Instant Form um&ldquo;</li>
+                        <li>8 Anzeigen werden automatisch &uuml;bernommen</li>
+                        <li>Alte Kampagne wird automatisch pausiert</li>
+                        <li>Nur noch Filterfrage im Ads Manager verkn&uuml;pfen</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -302,11 +385,10 @@
     <div class="footer-grid">
         <div class="footer-item"><div class="flabel">Status</div><div class="fvalue"><span class="status-active"><span class="status-dot"></span> Aktiv</span></div></div>
         <div class="footer-item"><div class="flabel">Kosten</div><div class="fvalue">0 EUR</div></div>
-        <div class="footer-item"><div class="flabel">Module</div><div class="fvalue">Quick Actions, Optimierung, Kampagnen</div></div>
-        <div class="footer-item"><div class="flabel">Live seit</div><div class="fvalue">05.04.2026</div></div>
+        <div class="footer-item"><div class="flabel">Bereiche</div><div class="fvalue">PA + MA Kampagnen</div></div>
+        <div class="footer-item"><div class="flabel">Zuletzt aktualisiert</div><div class="fvalue">07.04.2026</div></div>
     </div>
     <div class="footer-note">Fengler Consulting &mdash; Meta Ads Automatisierung</div>
-    <div class="footer-calc">Laufende Ersparnis: Quick Actions 5 min/Kunde/Tag &middot; Ad-Optimierung 8 min/Kunde 2&times;/Monat &middot; 22 Arbeitstage/Monat &middot; 260 Arbeitstage/Jahr &middot; 8h = 1 Arbeitstag. Zus&auml;tzlich einmalig: 40 min pro PA-Kampagnenerstellung (Neukunde).</div>
 </div>
 
 </div>
